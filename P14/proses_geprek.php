@@ -97,7 +97,7 @@
     </head>
     <body>
         <?php
-        include "config.php";
+            include "config.php";
         
 
             function rupiah($angka) {
@@ -118,6 +118,11 @@
                 $bonus[] = 'Minuman Gratis: Jus Jeruk';
             } elseif ($subtotal >= 20000) {
                 $bonus[] = 'Minuman Gratis: Es Teh Manis';
+            }
+        
+            $sql = "INSERT INTO transaksi (nama_pelanggan, email, total_bayar) VALUES ('$nama', '$email', '$total_harga')";
+            if ($conn->query($sql) === FALSE) {
+                echo "<p style='color:red'>Gagal menyimpan pesanan:" . $sql . "<br>" . $conn->error;
             }
         ?>
 
